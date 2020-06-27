@@ -1,0 +1,35 @@
+name: Build and deploy ASP.Net Core app to Azure Web App - mifrc
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    env:
+      working-directory: ./BackendService
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.102'
+    
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: dotnet publish
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: 'mifrc'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d09cd9a9908e4975b1eea9d518871663 }}
+        package: ${{env.DOTNET_ROOT}}/myapp 
