@@ -70,7 +70,9 @@ export default {
         .map((x) => {
           return { probability: x.probability, name: x.tagName }
         })
-
+      while(this.output.length!=0){
+        this.output.pop()
+      }
       predictedValue.forEach((x) => this.output.push(x))
     },
   },
