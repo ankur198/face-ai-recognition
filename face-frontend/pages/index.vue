@@ -79,8 +79,7 @@ export default {
 
 <style>
 .container {
-  background: #8fb3e8;
-  background: linear-gradient(to bottom right, #8fb3e8, #72bd5c);
+  background: #91cfe8;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
