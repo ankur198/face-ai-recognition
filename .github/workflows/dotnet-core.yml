@@ -3,7 +3,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - mifrc
 on:
   push:
     branches:
-      - master
+      - master1234
 
 jobs:
   build-and-deploy:
